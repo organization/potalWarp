@@ -1,0 +1,11 @@
+name : Warp
+main : mocha.plugin.Warp
+version : 1.0-SNAPSHOT
+author : Organization
+api : [1.0.0]
+
+permissions : 
+ mocha.plugin.addwarp.cmd :
+  default : OP
+ mocha.plugin.delwarp.cmd : 
+  default : OP
