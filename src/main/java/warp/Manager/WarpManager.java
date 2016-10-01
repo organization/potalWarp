@@ -1,4 +1,4 @@
-package mocha.plugin.Manager;
+package warp.Manager;
 
 import java.util.LinkedHashMap;
 
@@ -6,7 +6,7 @@ import cn.nukkit.Player;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
-import mocha.plugin.Warp;
+import warp.Warp;
 
 public class WarpManager {
 	public Warp warp;

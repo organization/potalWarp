@@ -1,11 +1,11 @@
-package mocha.plugin;
+package warp;
 
 import java.io.File;
 
 import cn.nukkit.event.Listener;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
-import mocha.plugin.commands.AddWarpCommand;
+import warp.commands.AddWarpCommand;
 
 public class Warp extends PluginBase implements Listener {
 	public Config warps;

@@ -1,11 +1,11 @@
-package mocha.plugin.commands;
+package warp.commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
-import mocha.plugin.Warp;
-import mocha.plugin.Manager.WarpManager;
+import warp.Warp;
+import warp.Manager.WarpManager;
 
 public class AddWarpCommand extends Command {
 	public WarpManager manager;
