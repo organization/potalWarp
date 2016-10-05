@@ -3,30 +3,34 @@ package warp.commands;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
-import warp.Warp;
-import warp.Manager.WarpManager;
+import warp.manager.WarpManager;
 
 public class DelWarpCommand extends Command {
 	public WarpManager manager;
 	
-	public DelWarpCommand(Warp plugin){
-		super("워프삭제","워프를 삭제합니다.","/워프삭제 <워프이름>",new String[]{"delwarp","warpdel","dw"});
+	public DelWarpCommand(){
+		super("워프삭제", "워프를 삭제합니다.", "/워프삭제 <워프이름>", new String[]{"delwarp","warpdel","dw","wd"});
 		this.setPermission("delwarp.cmd");
-		manager = new WarpManager(plugin);
+		this.manager = new WarpManager();
 	}
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
-		if(!sender.hasPermission(this.getPermission())) sender.sendMessage(TextFormat.RED+"명령어의 사용권한이 없습니다.");
-		else{
-			try{
-				if(manager.isWarp(args[0])){
-					if(manager.delWarp(args[0])) sender.sendMessage(TextFormat.AQUA+"[알림] "+TextFormat.GRAY+"워프를 성공적으로 삭제하였습니다.");
-					else sender.sendMessage(TextFormat.RED+"워프를 삭제하는데 문제가 발생하였습니다.");
-				}else sender.sendMessage(TextFormat.AQUA+"[알림] "+TextFormat.GRAY+"같은 이름의 워프를 찾을 수 없습니다.");
-			}catch(ArrayIndexOutOfBoundsException exception){
-				sender.sendMessage(TextFormat.RED+"워프이름을 입력하세요.");
-			}
+		if(!sender.hasPermission(this.getPermission())){
+			sender.sendMessage(TextFormat.RED+"명령어의 권한이 없습니다.");
+			return false;
 		}
-		return false;	
+		try{
+			if(this.manager.delWarp(args[0])) {
+				sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프가 삭제되었습니다.");
+				return true;
+			}else{
+				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 삭제하지 못했습니다.");
+				return false;
+			}
+		}catch(ArrayIndexOutOfBoundsException e){
+			sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프의 이름을 설정해주세요");
+			return false;
+		}
 	}
+
 }

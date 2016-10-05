@@ -4,33 +4,34 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
-import warp.Warp;
-import warp.Manager.WarpManager;
+import warp.manager.WarpManager;
 
 public class WarpCommand extends Command {
 	public WarpManager manager;
-
-	public WarpCommand(Warp plugin) {
-		super("워프","워프합니다.","/워프 <워프이름>",new String[]{"이동","warp"});
+	
+	public WarpCommand(){
+		super("워프", "워프합니다.", "/워프 <워프이름>", new String[]{"warp","move","이동"});
 		this.setPermission("warp.cmd");
-		manager = new WarpManager(plugin);
+		this.manager = new WarpManager();
 	}
-
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
-		if(!sender.isPlayer()) sender.sendMessage(TextFormat.RED+"콘솔은 사용 불가능 합니다.");
-		else{
-			try{
-				if(manager.isWarp(args[0])){
-					Player player = (Player)sender;
-					manager.warp(args[0], player);
-					sender.sendMessage(TextFormat.AQUA+"[알림] "+TextFormat.GRAY+"이동되었습니다.");
-				}else sender.sendMessage(TextFormat.AQUA+"[알림] "+TextFormat.GRAY+"워프를 찾을 수 없습니다.");
-			}catch(ArrayIndexOutOfBoundsException e){
-				sender.sendMessage(TextFormat.RED+"[오류]"+TextFormat.GRAY+" 워프이름을 입력 해 주세요.");
-			}
+		if(!sender.isPlayer()){
+			sender.sendMessage(TextFormat.RED+"플레이어만 사용 가능합니다.");
+			return false;
 		}
-		return false;
+		try{
+			if(this.manager.warp(args[0], (Player)sender)) {
+				sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
+				return true;
+			}else{
+				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
+				return false;
+			}
+		}catch(ArrayIndexOutOfBoundsException e){
+			sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프의 이름을 설정해주세요");
+			return false;
+		}
 	}
 
 }

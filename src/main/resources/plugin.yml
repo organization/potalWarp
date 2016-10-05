@@ -1,15 +1,15 @@
 name : Warp
 main : warp.Warp
 version : 1.0-SNAPSHOT
-author : Organic
+author : mocha
 api : [1.0.0]
-  
+
 permissions : 
- addwarp.cmd :
+ addwarp.cmd : 
   default : OP
  delwarp.cmd : 
   default : OP
- warplist.cmd : 
+ listwarp.cmd : 
   default : true
  warp.cmd : 
-  default : true
+  default : OP
