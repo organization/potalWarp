@@ -34,4 +34,12 @@ public class PortalManager {
 			}
 		}
 	}
+public boolean addPortal(String name,double x,double y,double z,Level level,String targetname){
+
+}
+public void delPortal(String name){}
+public boolean isPortal(String name){}
+public void taskUpdate(){
+}
+
 }
