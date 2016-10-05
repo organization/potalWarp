@@ -20,11 +20,16 @@ public class DelWarpCommand extends Command {
 			return false;
 		}
 		try{
-			if(this.manager.delWarp(args[0])) {
-				sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프가 삭제되었습니다.");
-				return true;
+			if(manager.isWarp(args[0])){
+				if(this.manager.delWarp(args[0])) {
+					sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프가 삭제되었습니다.");
+					return true;
+				}else{
+					sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 삭제하지 못했습니다.");
+					return false;
+				}
 			}else{
-				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 삭제하지 못했습니다.");
+				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 찾을수없습니다.");
 				return false;
 			}
 		}catch(ArrayIndexOutOfBoundsException e){

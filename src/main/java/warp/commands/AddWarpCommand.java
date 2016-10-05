@@ -26,8 +26,13 @@ public class AddWarpCommand extends Command {
 		}
 		try{
 			if(this.manager.addWarp(args[0], (Player)sender)) {
-				sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프가 생성되었습니다.");
-				return true;
+				if(!args[0].contains(".")){
+					sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프가 생성되었습니다.");
+					return true;
+				}else{
+					sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프이름에는 특수분자(.)가 들어갈 수 없습니다.");
+					return false;
+				}
 			}else{
 				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 생성하지 못했습니다.");
 				return false;

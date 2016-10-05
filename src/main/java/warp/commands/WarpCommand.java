@@ -21,11 +21,16 @@ public class WarpCommand extends Command {
 			return false;
 		}
 		try{
-			if(this.manager.warp(args[0], (Player)sender)) {
-				sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
-				return true;
-			}else{
-				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
+			if(manager.isWarp(args[0])){
+				if(this.manager.warp(args[0], (Player)sender)) {
+					sender.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
+					return true;
+				}else{
+					sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
+					return false;
+				}
+			}else {
+				sender.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프를 찾을수없습니다.");
 				return false;
 			}
 		}catch(ArrayIndexOutOfBoundsException e){

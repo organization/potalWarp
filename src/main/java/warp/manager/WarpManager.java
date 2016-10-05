@@ -1,5 +1,6 @@
 package warp.manager;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import cn.nukkit.Player;
@@ -19,16 +20,20 @@ public class WarpManager {
 	}
 	public boolean addWarp(String warp, double x, double y, double z, Level level){
 		try{
-			LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+			if(!warp.contains(".")){
+				LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+				
+				map.put("x", x);
+				map.put("y", y);
+				map.put("z", z);
+				map.put("level", level.getFolderName());
 			
-			map.put("x", x);
-			map.put("y", y);
-			map.put("z", z);
-			map.put("world", level.getFolderName());
-			
-			this.warp.warps.set(warp, map);
-			this.warp.save();
-			return true;
+				this.warp.warps.set(warp, map);
+				this.warp.save();
+				return true;
+			}else{
+				return false;
+			}
 		}catch(Exception e){
 			return false;
 		}
@@ -46,37 +51,37 @@ public class WarpManager {
 		if(this.warp.warps.get(warp) == null) return false;
 		else return true;
 	}
-	public String[] getList(){
+	public ArrayList<String> getList(){
 		try{
-			String[] list = new String[this.warp.warps.getKeys().size()];
-			int i = 0;
+			ArrayList<String> list = new ArrayList<String>();
 			for(String s : this.warp.warps.getKeys()){
-				list[i] = s;
-				i++;
+				if(!s.contains(".")){
+					list.add(s);
+				}
 			}
 			return list;
 		}catch(Exception e){
-			return new String[]{};
+			return new ArrayList<String>();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public boolean warp(String warp, Player player){
 		try{
-			Position pos = this.getWarp(warp);
-			player.teleport(pos);
+			LinkedHashMap<String, Object> map = (LinkedHashMap<String, Object>)this.warp.warps.get(warp);
+			double x,y,z;
+			x = toDouble(map.get("x"));
+			y = toDouble(map.get("y"));
+			z = toDouble(map.get("z"));
+			player.teleport(new Position(x,y,z,this.warp.getServer().getLevelByName(map.get("level").toString())));
 			return true;
 		}catch(Exception e){
 			return false;
 		}
 	}
-	public Position getWarp(String warp){
-		try{
-			@SuppressWarnings("unchecked")
-			LinkedHashMap<String, Object> map = (LinkedHashMap<String, Object>)this.warp.warps.get(warp);
-			
-			return new Position((double)map.get("x"), (double)map.get("y"), (double)map.get("z"), 
-					this.warp.getServer().getLevelByName(map.get("world").toString()));
-		}catch(Exception e){
-			return new Position();
-		}
+	private double toDouble(Object o){
+		if(o instanceof Integer) return ((Integer)o).doubleValue();
+		if(o instanceof Double) return ((Double)o).doubleValue();
+		if(o instanceof String) return Double.parseDouble(o.toString());
+		return 0.0D;
 	}
 }
