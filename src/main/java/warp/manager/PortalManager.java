@@ -34,12 +34,15 @@ public class PortalManager {
 			}
 		}
 	}
-public boolean addPortal(String name,double x,double y,double z,Level level,String targetname){
-
-}
-public void delPortal(String name){}
-public boolean isPortal(String name){}
-public void taskUpdate(){
-}
-
+	public boolean addPortal(String name,double x,double y,double z,Level level,String target){
+		//TODO 포탈을 추가하는 메서드
+	}
+	public void delPortal(String name){
+		//TODO 포탈을 삭제하는 메서드
+	}
+	public boolean isPortal(String name){
+		//TODO 포탈임을 확인하는 메서드
+	}
+	public void taskUpdate(){
+	}
 }
