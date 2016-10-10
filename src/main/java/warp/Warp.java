@@ -28,7 +28,7 @@ public class Warp extends PluginBase implements Listener {
 		this.getDataFolder().mkdirs();
 		instance = this;
 		this.warps = new Config(this.getDataFolder()+"/warps.yml", Config.YAML);
-		this.portals = new Config(this.getDataFolder()+"/portals.yml", Config.YAML);
+		this.portals = new Config(this.getDataFolder()+"/portals.json", Config.JSON);
 		this.getServer().getCommandMap().register("워프추가", new AddWarpCommand());
 		this.getServer().getCommandMap().register("워프삭제", new DelWarpCommand());
 		this.getServer().getCommandMap().register("워프", new WarpCommand());
