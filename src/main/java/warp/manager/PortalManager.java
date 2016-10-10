@@ -37,6 +37,9 @@ public class PortalManager {
 	public boolean addPortal(String name,double x,double y,double z,Level level,String target){
 		//TODO 포탈을 추가하는 메서드
 	}
+        public boolean addPortal(String name,Player player,String target){
+		//TODO 포탈을 추가하는 메서드
+	}
 	public void delPortal(String name){
 		//TODO 포탈을 삭제하는 메서드
 	}
