@@ -40,6 +40,7 @@ public class Warp extends PluginBase implements Listener {
 		this.save();
 		super.onDisable();
 	}
+	
 	/*event*/
 	@EventHandler
 	public void onChange(SignChangeEvent event){
@@ -58,6 +59,24 @@ public class Warp extends PluginBase implements Listener {
 			}
 		}
 		return;
+	}
+        
+        @EventHandler
+	public void MovingCheck(PlayerMoveEvent event){
+		Player player = event.getPlayer();
+		int x = (int) player.x;
+		int y = (int) player.y;
+		int z = (int) player.z;
+		
+		if(player.level.getBlockIdAt(x, y, z) == Item.SIGN_POST || player.level.getBlockIdAt(x, y, z) == Item.WALL_SIGN){
+			BlockEntitySign t = (BlockEntitySign) player.level.getBlockEntity(new Vector3(x, y, z));
+			//아래 코드는 참고하여 사용하였습니다.
+			if(t.getText()[0].equals("§l§b[ Portal Sign ]")){
+				if(new WarpManager().warp(t.getText()[1], player)) player.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
+				else player.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
+			}
+		}
+		//이 경우에는 출구에 워프를 생성하면 안될걸로 예상하는데,,		
 	}
 	/*****/
 	public void save(){
