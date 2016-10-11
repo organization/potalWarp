@@ -48,7 +48,7 @@ public class WarpManager {
 		}
 	}
 	public boolean isWarp(String warp){
-		if(this.warp.warps.containsKey(warp)) return true;
+		if(this.warp.warps.exists(warp)) return true;
 		else return false;
 	}
 	public ArrayList<String> getList(){
