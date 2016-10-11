@@ -43,16 +43,22 @@ public class PortalManager {
 	*   "target" : "spawn"
 	* }
 	*/
+	public boolean addPortal(String name,Player player,String target){
+			this.addPortal(name, player.getX(),player.getY(),player.getZ(),player.getLevel(), target);
+		}
+	 
 	public boolean addPortal(String name,double x,double y,double z,Level level,String target){
+		if(!this.manager.isWarp()){
+			return false;
+		}
 		LinkedHashMap<String, Object> data = new LinkedHashMap<String,Object>();
 		data.put("x", String.format("%.1f", x));
 		data.put("y", String.format("%.1f", y));
 		data.put("z", String.format("%.1f", z));
 		data.put("level", level.getFolderName());
 		data.put("target", target);
-	}
-        public boolean addPortal(String name,Player player,String target){
-		//TODO 포탈을 추가하는 메서드
+		
+		return true;
 	}
 	public void delPortal(String name){
 		//TODO 포탈을 삭제하는 메서드
