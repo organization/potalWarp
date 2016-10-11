@@ -63,6 +63,7 @@ public class PortalManager {
 	public void delPortal(String name){
 		//TODO 포탈을 삭제하는 메서드
 	}
+	
 	public boolean isPortal(String name){
 		return this.warp.getInstance().portals.exists(name);
 	}
