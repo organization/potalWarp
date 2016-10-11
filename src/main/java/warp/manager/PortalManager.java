@@ -64,7 +64,7 @@ public class PortalManager {
 		//TODO 포탈을 삭제하는 메서드
 	}
 	public boolean isPortal(String name){
-		//TODO 포탈임을 확인하는 메서드
+		return this.warp.getInstance().portals.exists(name);
 	}
 	public void taskUpdate(){
 	}
