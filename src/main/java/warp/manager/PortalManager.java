@@ -34,6 +34,15 @@ public class PortalManager {
 			}
 		}
 	}
+	/**
+	* name : {
+	*   "x" : 1.0, 
+	*   "y" : 1.0,
+	*   "z" : 1.0,
+	*   "world" : "world",
+	*   "target" : "spawn"
+	* }
+	*/
 	public boolean addPortal(String name,double x,double y,double z,Level level,String target){
 		//TODO 포탈을 추가하는 메서드
 	}
