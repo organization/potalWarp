@@ -64,9 +64,9 @@ public class Warp extends PluginBase implements Listener {
         @EventHandler
 	public void MovingCheck(PlayerMoveEvent event){
 		Player player = event.getPlayer();
-		int x = (int) player.x;
-		int y = (int) player.y;
-		int z = (int) player.z;
+		int x = player.getFloorX();
+		int y = player.getFloorY();
+		int z = player.getFloorZ();
 		
 		if(player.level.getBlockIdAt(x, y, z) == Item.SIGN_POST || player.level.getBlockIdAt(x, y, z) == Item.WALL_SIGN){
 			BlockEntitySign t = (BlockEntitySign) player.level.getBlockEntity(new Vector3(x, y, z));
