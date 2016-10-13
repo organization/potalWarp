@@ -9,8 +9,8 @@ import cn.nukkit.level.Position;
 import warp.Warp;
 
 public class WarpManager {
-        public static WarpManager instance = new WarpManager();
-	public Warp warp = Warp.getInstance();
+        private static WarpManager instance = new WarpManager();
+	private Warp warp = Warp.getInstance();
 	
 	private WarpManager(){
 	}
