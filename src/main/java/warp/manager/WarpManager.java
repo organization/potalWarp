@@ -9,11 +9,15 @@ import cn.nukkit.level.Position;
 import warp.Warp;
 
 public class WarpManager {
-	public Warp warp;
+        public WarpManager instance = new WarpManager();
+	public Warp warp = Warp.getInstance();
 	
-	public WarpManager(){
-		this.warp = Warp.getInstance();
+	private WarpManager(){
 	}
+
+        public WarpManager getInstance(){
+                return instance;
+        }
 	
 	public boolean addWarp(String warp, Player player){
 		return addWarp(warp, player.getX(),player.getY(),player.getZ(),player.getLevel());
