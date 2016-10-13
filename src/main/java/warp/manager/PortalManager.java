@@ -6,9 +6,9 @@ import cn.nukkit.utils.TextFormat;
 import warp.Warp;
 
 public class PortalManager {
-        public static PortalManager instance = new PortalManager();
-	public WarpManager manager = WarpManager.getInstance();
-	public Warp warp = Warp.getInstance();
+        private static PortalManager instance = new PortalManager();
+	private WarpManager manager = WarpManager.getInstance();
+	private Warp warp = Warp.getInstance();
 	
 	private PortalManager(){
 	}
