@@ -12,7 +12,7 @@ public class WarpCommand extends Command {
 	public WarpCommand(){
 		super("워프", "워프합니다.", "/워프 <워프이름>", new String[]{"warp","move","이동"});
 		this.setPermission("warp.cmd");
-		this.manager = new WarpManager();
+		this.manager = WarpManager.getInstance();
 	}
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
