@@ -11,7 +11,7 @@ public class DelWarpCommand extends Command {
 	public DelWarpCommand(){
 		super("워프삭제", "워프를 삭제합니다.", "/워프삭제 <워프이름>", new String[]{"delwarp","warpdel","dw","wd"});
 		this.setPermission("delwarp.cmd");
-		this.manager = new WarpManager();
+		this.manager = WarpManager.getInstance();
 	}
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {
