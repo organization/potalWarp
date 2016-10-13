@@ -6,13 +6,16 @@ import cn.nukkit.utils.TextFormat;
 import warp.Warp;
 
 public class PortalManager {
-	public WarpManager manager;
-	public Warp warp;
+        public static PortalManager instance = new PortalManager();
+	public WarpManager manager = WarpManager.getInstance();
+	public Warp warp = Warp.getInstance();
 	
-	public PortalManager(){
-		this.warp = Warp.getInstance();
-		this.manager = new WarpManager();
+	private PortalManager(){
 	}
+
+        public static PortalManager getInstance() {
+                return instance;
+        }
 	
 	public void addSignWarp(SignChangeEvent event){
 		Player player = event.getPlayer();
