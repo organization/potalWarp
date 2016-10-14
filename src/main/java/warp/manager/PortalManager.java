@@ -65,7 +65,7 @@ public class PortalManager {
 		return true;
 	}
 	public void delPortal(String name){
-		//TODO 포탈을 삭제하는 메서드
+		//main클스 porta Config - remove  메서이 
 	}
 	
 	public boolean isPortal(String name){
