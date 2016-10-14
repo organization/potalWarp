@@ -57,7 +57,11 @@ public class PortalManager {
 		data.put("z", String.format("%.1f", z));
 		data.put("level", level.getFolderName());
 		data.put("target", target);
-		
+		try{
+		warp.portals.set(name, data);
+		}catch(Exption e){
+		return flase;
+		}
 		return true;
 	}
 	public void delPortal(String name){
