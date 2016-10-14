@@ -12,7 +12,7 @@ public class AddWarpCommand extends Command {
 	public AddWarpCommand(){
 		super("워프추가", "워프를 추가합니다.", "/워프추가 <워프이름>", new String[]{"addwarp","warpadd","aw","wa"});
 		this.setPermission("addwarp.cmd");
-		this.manager = new WarpManager();
+		this.manager = WarpManager.getInstance();
 	}
 	@Override
 	public boolean execute(CommandSender sender, String label, String[] args) {

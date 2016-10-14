@@ -44,7 +44,7 @@ public class Warp extends PluginBase implements Listener {
 	/*event*/
 	@EventHandler
 	public void onChange(SignChangeEvent event){
-		new PortalManager().addSignWarp(event);
+		PortalManager.getInstance().addSignWarp(event);
 	}
 	@EventHandler
 	public void onTouch(PlayerInteractEvent event){
@@ -54,11 +54,10 @@ public class Warp extends PluginBase implements Listener {
 			BlockEntitySign sign = (BlockEntitySign)event.getBlock().getLevel().getBlockEntity(
 					new Vector3(event.getBlock().getX(),event.getBlock().getY(),event.getBlock().getZ()));
 			if(sign.getText()[0].equals("§l§b[ Portal Sign ]")){
-				if(new WarpManager().warp(sign.getText()[1], player)) player.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
+				if(WarpManager.getInstance().warp(sign.getText()[1], player)) player.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
 				else player.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
 			}
 		}
-		return;
 	}
         
         @EventHandler
@@ -72,7 +71,7 @@ public class Warp extends PluginBase implements Listener {
 			BlockEntitySign t = (BlockEntitySign) player.level.getBlockEntity(new Vector3(x, y, z));
 			//아래 코드는 참고하여 사용하였습니다.
 			if(t.getText()[0].equals("§l§b[ Portal Sign ]")){
-				if(new WarpManager().warp(t.getText()[1], player)) player.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
+				if(WarpManager.getInstance().warp(t.getText()[1], player)) player.sendMessage(TextFormat.AQUA+"[ 알림 ] "+TextFormat.GRAY+"워프되었습니다.");
 				else player.sendMessage(TextFormat.RED+"[ 오류 ] "+TextFormat.GRAY+"워프하지 못했습니다.");
 			}
 		}

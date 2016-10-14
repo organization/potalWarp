@@ -10,7 +10,7 @@ public class ListWarpCommand extends Command {
 	
 	public ListWarpCommand(){
 		super("워프목록","이동가능한 위치를 봅니다.","/워프목록",new String[]{"listwarp","warplist","워프리스트"});
-		this.manager = new WarpManager();
+		this.manager = WarpManager.getInstance();
 		this.setPermission("listwarp.cmd");
 	}
 	@Override
