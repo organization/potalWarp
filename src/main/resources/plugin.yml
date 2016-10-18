@@ -1,7 +1,8 @@
 name : Warp
 main : warp.Warp
 version : 1.0-SNAPSHOT
-author : mocha
+author : Organic
+description : "한국인들을 위한 워프, 포탈 플러그인입니다."
 api : [1.0.0]
 
 permissions : 
@@ -12,4 +13,10 @@ permissions :
  listwarp.cmd : 
   default : true
  warp.cmd : 
+  default : true
+ addportal.cmd :
   default : OP
+ delportal.cmd :
+  default : OP
+ listportal.cmd :
+  default : true

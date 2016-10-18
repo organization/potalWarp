@@ -8,16 +8,39 @@ import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import warp.Warp;
 
+/**
+ * @author {mocha, Angelless}
+ * 워프의 생성, 삭제, 확인 등 여러가지 기능을 하는 클래스입니다.
+ */
 public class WarpManager {
 	public Warp warp;
-	
+
+	/**
+	 * 생성자 입니다. 딱히 기능은 없습니다.
+	 */
 	public WarpManager(){
-		this.warp = Warp.getInstance();
+		this.warp = new Warp();
 	}
-	
+
+	/**
+	 * 플레이어의 좌표정보를 이용하여 워프를 생성합니다.
+	 * @param warp
+	 * @param player
+	 * @return
+	 */
 	public boolean addWarp(String warp, Player player){
 		return addWarp(warp, player.getX(),player.getY(),player.getZ(),player.getLevel());
 	}
+
+	/**
+	 * 워프를 생성합니다.
+	 * @param warp
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param level
+	 * @return
+	 */
 	public boolean addWarp(String warp, double x, double y, double z, Level level){
 		try{
 			if(!warp.contains(".")){
@@ -38,6 +61,12 @@ public class WarpManager {
 			return false;
 		}
 	}
+
+	/**
+	 * 워프를 삭제합니다.
+	 * @param warp
+	 * @return
+	 */
 	public boolean delWarp(String warp){
 		try{
 			this.warp.warps.remove(warp);
@@ -47,10 +76,20 @@ public class WarpManager {
 			return false;
 		}
 	}
+
+	/**
+	 * 워프의 존재여부를 반환합니다.
+	 * @param warp
+	 * @return
+	 */
 	public boolean isWarp(String warp){
-		if(this.warp.warps.exists(warp)) return true;
-		else return false;
+		return this.warp.warps.exists(warp);
 	}
+
+	/**
+	 * 워프의 목록을 {@link ArrayList} 로 반환합니다.
+	 * @return
+	 */
 	public ArrayList<String> getList(){
 		try{
 			ArrayList<String> list = new ArrayList<String>();
@@ -64,6 +103,13 @@ public class WarpManager {
 			return new ArrayList<String>();
 		}
 	}
+
+	/**
+	 * player를 워프시키는 메서드입니다.
+	 * @param warp
+	 * @param player
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public boolean warp(String warp, Player player){
 		try{
@@ -78,6 +124,12 @@ public class WarpManager {
 			return false;
 		}
 	}
+
+	/**
+	 * Object 형태의 데이터를 double 로 변환시킵니다. 내부적으로만 사용합니다.
+	 * @param o
+	 * @return
+	 */
 	private double toDouble(Object o){
 		if(o instanceof Integer) return ((Integer)o).doubleValue();
 		if(o instanceof Double) return ((Double)o).doubleValue();
