@@ -4,6 +4,6 @@
 ###nukkit용 포탈,워프 플러그인
 <code>
 <script>
-document.write();
+document.write("워프");
 </script>
 </code>
